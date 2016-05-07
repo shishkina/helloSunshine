@@ -25,7 +25,7 @@ app.get('/', function(req, res){
 });
 
 //authentication handling
-var secret = 'HelloSecret';
+var secret = 'Sunshine';
 app.use('/authenticate', authorizationRoutes);
 app.use('/', userRoutes);
 
@@ -36,7 +36,7 @@ app.use(function(req, res, next){
   //decode token
   if(token){
     //verifies secret
-    jwt.verify(token, 'HelloSecret', function(err, decoded){
+    jwt.verify(token, 'Sunshine', function(err, decoded){
       if(err){
         return res.json({
           success: false,
