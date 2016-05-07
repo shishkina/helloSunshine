@@ -1,0 +1,30 @@
+{
+  "name": "hello-sunshine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shishkina/helloSunshine.git"
+  },
+  "author": "Kate Shishkina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shishkina/helloSunshine/issues"
+  },
+  "homepage": "https://github.com/shishkina/helloSunshine#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "express-jwt": "^3.4.0",
+    "jsonwebtoken": "^6.2.0",
+    "mongoose": "^4.4.15",
+    "morgan": "^1.7.0",
+    "request": "^2.72.0"
+  }
+}
