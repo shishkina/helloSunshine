@@ -1,0 +1,9 @@
+<div ng-controller="UserController as user">
+  <header>
+<div ng-controller="AuthController as auth">
+    <button ng-if="auth.isAuthenticated()" class="btn btn-primary" ng-click="auth.logout()">Logout</button>
+</div>
+</header>
+  <nav class="tabs">
+    <a  ui-sref-active="active" ui-sref="update"> Update</a>
+  </nav>

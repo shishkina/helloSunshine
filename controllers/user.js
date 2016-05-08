@@ -1,16 +1,5 @@
 var User = require('../models/user.js');
 
-function getUsers(req, res){
-  User.find(function(err, users){
-    if(err){
-      console.log("There are no users in the database");
-    }
-    res.json({
-      users: users
-    });
-  })
-};
-
 function createUser(req, res){
   console.log(re.body);
   var user = new User(req.body);
@@ -23,7 +12,22 @@ function createUser(req, res){
       res.json(user);
   });
 }
-
+function updateUser(req, res){
+  //assign necessary parameters
+  var id = req.params.id;
+  var email = req.params.email;
+  var password = req.params.password;
+  //find user by id
+  User.findOneAndUpdate(
+    {_id: id},
+    {$set: {email: email, password: password}},
+    {new:true}, function(err,doc){
+      if(err){
+        console.log("User Not updated. Error: " + err);
+      }
+      console.log(doc);
+    })
+}
 function getUser(req, res){
   var id = req.params.id;
 

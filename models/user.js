@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 //defining User model
 var UserSchema = new mongoose.Schema({
-  username: String,
   email: String,
   password: String,
   date: Date,
@@ -46,4 +45,4 @@ UserSchema.methods.comparePassword = function(userPassword, cb){
 
 var User = mongoose.model('User', UserSchema);
 //export User model
-module.export = User;
+module.exports = User;

@@ -1,0 +1,21 @@
+<header>
+  <h1> Sunshine!</h1>
+  <h4> Log in </h4>
+
+</header>
+<nav class="tabs">
+  <a ui-sref="signup" ui-sref-active="active">signup</a>
+
+</nav>
+
+    <section id="login" ng-controller="AuthController as auth">
+      <form>
+        <div class="form-group">
+      <input type="text" class="form-control" id="login-email" placeholder="email" ng-model="auth.email">
+        </div>
+        <div class="form-group">
+      <input type="password" class="form-control" id="login-password" placeholder="password" ng-model="auth.password">
+        </div>
+      <button class="btn btn-primary" ng-click="auth.login()">Login</button>
+      </form>
+    </section>

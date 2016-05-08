@@ -1,0 +1,15 @@
+<div ng-controller="AuthController as auth">
+<header>
+    <h2>Sign Up</h2>
+</header>
+
+  <section id="signup">
+    <form class="add-user" ng-submit="auth.signup()">
+    <input type="text" id="signup-email" placeholder="email" ng-model="auth.email">
+    <input type="password" id="signup-password" placeholder="password" ng-model="auth.password">
+    <input type="submit" class="btn btn-add" value="Sign up">
+    </form>
+  </section>
+
+
+</div>
