@@ -22,7 +22,7 @@ function UserController($http, $auth, $state, $stateParams){
             url: "/" + userId,
             method: "GET"
           }).then(function(data){
-            console.log("this is user " + self.user);
+            console.log("this is self " + self);
             self.user = data.data.user;
             // console.log("self.user.data.user " + self.user.data.user);
           });
