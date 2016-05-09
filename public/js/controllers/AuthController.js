@@ -14,7 +14,7 @@ function AuthController($http, $auth, $state) {
     $auth.login(credentials).then(function(data){
       console.log($auth.isAuthenticated());
       var user = data.data.user;
-      console.log(self);
+      console.log(user + "this is user");
       // debugger;
       console.log(typeof(data));
       console.log(user._id + " id being passed");
