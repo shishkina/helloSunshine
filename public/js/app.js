@@ -22,11 +22,12 @@ function MainRouter(states, router, auth) {
 					templateUrl: 'signup.html',
 				})
 				.state('user', {
-					url: '/:id',
-					templateUrl: 'home.html'
+					url: '/users/:id',
+					templateUrl: 'home.html',
+					controller: 'UserController as user'
 				})
 				.state('update', {
-					url:'/:id',
+					url:'/users/:id',
 					templateUrl: 'update.html'
 				});
 }

@@ -5,8 +5,6 @@ console.log("Inside the AuthController");
 
 function AuthController($http, $auth, $state) {
   var self = this;
-  console.log("Logging from the AuthController");
-
   self.login = function(){
     var credentials = {
       email: self.email,
@@ -18,10 +16,10 @@ function AuthController($http, $auth, $state) {
       var user = data.data.user;
       console.log(self);
       // debugger;
-      // console.log(typeof(data));
-      // console.log(user._id + " data");
-      console.log(user + " the whole object");
-      $state.go('user', {user: user._id});
+      console.log(typeof(data));
+      console.log(user._id + " id being passed");
+      console.log(user.email + " email");
+      $state.go('user', {"id": user._id});
 
     });
   },
@@ -38,7 +36,7 @@ function AuthController($http, $auth, $state) {
     }
 			self.signup = function(){
 					$auth.signup({
-					email: self.email,          
+					email: self.email,
 				  password: self.password
 				}).then(function(response) {
 				  console.log(response.data);

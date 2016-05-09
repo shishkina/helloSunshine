@@ -18,7 +18,7 @@ router.post('/auth/signup', function(req, res){
   });
 });
 //get user
-router.get('/:id', function(req, res){
+router.get('/users/:id', function(req, res){
   var id = req.params.id;
   console.log(("id from the route: " + id));
   User.findById({_id:id}, function(err, user){
@@ -30,7 +30,7 @@ router.get('/:id', function(req, res){
   });
 });
 
-router.patch('/:id', function(req, res){
+router.patch('/users/:id', function(req, res){
   var id = req.params.id;
   console.log("id from the patch route " + id);
   User.findById({_id:id}, function(err, user){

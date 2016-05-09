@@ -2,7 +2,7 @@
 app.factory('userData', ['$resource', userDataFactory]);
 
 function userDataFactory($resource){
-  var User = $resource('/');
+  var User = $resource('/users');
 
   return {
     getUser: function(){

@@ -7,7 +7,9 @@ function UserController($http, $auth, $state, $stateParams){
       var self = this;
 		 	self.updateOne = {};
       // self.all = [];
-      var userId = $stateParams.user;
+			console.log(self);
+      var userId = $stateParams.id;
+			console.log($stateParams.id + " state params");
       if($auth.isAuthenticated) {
         console.log("this is excecuting");
         getUser();
@@ -19,11 +21,12 @@ function UserController($http, $auth, $state, $stateParams){
         //this is working
         console.log("Logging from inside getUser");
           $http({
-            url: "/" + userId,
+            url: "/users/" + userId,
             method: "GET"
           }).then(function(data){
-            console.log("this is self " + self);
-            self.user = data.data.user;
+            // console.log("this is self " + Object.self.getOwnPropertyNames());
+            console.log(data + " this is data");
+						self.user = data.data.user;
             // console.log("self.user.data.user " + self.user.data.user);
           });
       }
@@ -31,7 +34,7 @@ function UserController($http, $auth, $state, $stateParams){
 				console.log("in update User now");
 				$http({
 					method: 'PATCH',
-					url: "/" + userId,
+					url: "/users/" + userId,
 					data: self.updateOne,
 					headers: {'Content-Type':'application/json'}
 				}).then( function(data) {
