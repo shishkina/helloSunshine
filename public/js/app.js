@@ -22,12 +22,17 @@ function MainRouter(states, router, auth) {
 					templateUrl: 'signup.html',
 				})
 				.state('user', {
-					url: '/users/:id',
+					url: '/user/:id',
 					templateUrl: 'home.html',
 					controller: 'UserController as user'
 				})
 				.state('update', {
-					url:'/users/:id',
+					url:'/user/:id',
 					templateUrl: 'update.html'
+				})
+				.state('currentWeather',{
+					url: '/currentWeather',
+					templateUrl: 'home.html',
+					controller: 'WeatherController as weather'
 				});
 }

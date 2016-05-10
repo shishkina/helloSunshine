@@ -1,14 +1,15 @@
-var express = require('express'),
-    morgan = require('morgan'),
-    bodyParser = require('body-parser'),
-    request = require('request'),
-    bcrypt = require('bcrypt'),
-    userRoutes = require('./config/userRoutes.js'),
-    authorizationRoutes = require('./config/authorizationRoutes.js'),
-    mongoose = require('mongoose'),
-    jwt = require('jsonwebtoken'),
-    User = require('./models/user.js'),
-    app = express();
+var express = require('express');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var request = require('request');
+var bcrypt = require('bcrypt');
+var userRoutes = require('./config/user_routes.js');
+var authorizationRoutes = require('./config/authorization_routes.js');
+var weatherRoutes = require('./config/weather_routes.js');
+var mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
+var User = require('./models/user.js');
+var app = express();
 
 //use morgan in dev environment for debugging, console output
 app.use(morgan('dev'));
@@ -27,12 +28,12 @@ app.get('/', function(req, res){
 //authentication handling
 var secret = 'Sunshine';
 app.use('/authenticate', authorizationRoutes);
-app.use('/', userRoutes);
+app.use('/user', userRoutes);
+app.use('/currentWeather', weatherRoutes);
 
 app.use(function(req, res, next){
   //check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req. headers['x-access-token'];
-
   //decode token
   if(token){
     //verifies secret
@@ -56,7 +57,6 @@ app.use(function(req, res, next){
     });
   }
 });
-
 //connect to the database
 mongoose.connect('mongodb://localhost/weatherApp', function(err){
   if(err){

@@ -6,9 +6,8 @@ var User = require('../models/user.js'),
 
 function makeToken(req, res){
   //check the credentials first
-
   User.findOne({
-    username: req.body.username
+    email: req.body.email,
   }, function(err, user){
     console.log(user);
     if(err){
@@ -31,12 +30,12 @@ function makeToken(req, res){
 
           res.send({
             user: user,
-            token: token
+            token: token,
           });
         } else {
             res.send({
               success: false,
-              message: 'Authentication failed.Wrong password.'
+              message: 'Authentication failed.Wrong password.',
             });
         }
       });

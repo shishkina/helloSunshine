@@ -10,29 +10,29 @@ router.post('/auth/signup', function(req, res){
   user.save(function(err){
     if(err){
       res.json({
-        msg: "Unable to create user"
+        msg: 'Unable to create user'
       })
     }
-      console.log(user + "saving user");
+      console.log(user + 'saving user');
       res.send({user:user});
   });
 });
 //get user
-router.get('/users/:id', function(req, res){
+router.get('/:id', function(req, res){
   var id = req.params.id;
-  console.log(("id from the route: " + id));
+  console.log(('id from the route: ' + id));
   User.findById({_id:id}, function(err, user){
     if(err){
       console.log(err);
     }
-    console.log("user: " + user);
+    console.log('user: ' + user);
     res.send({user:user});
   });
 });
 
-router.patch('/users/:id', function(req, res){
+router.patch('/:id', function(req, res){
   var id = req.params.id;
-  console.log("id from the patch route " + id);
+  console.log('id from the patch route ' + id);
   User.findById({_id:id}, function(err, user){
     if(err){
       console.log(err);
@@ -48,7 +48,7 @@ router.patch('/users/:id', function(req, res){
         console.log(err);
       }
       res.send({user:user});
-      console.log("updated user: " + user);
+      console.log('updated user: ' + user);
     });
   });
 });

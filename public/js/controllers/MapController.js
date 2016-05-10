@@ -27,6 +27,10 @@ function 	MapController ($scope, $window){
 		createMarker($scope.lat, $scope.lng);
 		});
 	});
+	var getWeather = function(lat, lng){
+		
+	}
+	getWeather($scope.lat, $scope.lng);
 
 // var initialLocation;
 // var siberia = new google.maps.LatLng(60, 105);
@@ -67,6 +71,4 @@ function 	MapController ($scope, $window){
 //     map.setCenter(initialLocation);
 //   }
 // }
-
-
 }
