@@ -4,6 +4,7 @@ console.log("inside the WeatherController");
 
 function  WeatherController($scope, $stateParams, $state, $http, $auth){
 			var self = this;
+			console.log(self + " self weather controller");
 			self.coords = {
 			lat: $stateParams.latitude,
 			lng: $stateParams.longitude,
@@ -16,14 +17,14 @@ function  WeatherController($scope, $stateParams, $state, $http, $auth){
         $state.go('login');
         console.log('login page excecuting');
       }
-			function getCurrentWeather(){
+			$scope.getCurrentWeather = function(){
         console.log("in getCurrentWeather");
 					$http({
 						method: 'GET',
 						url:'/currentWeather/' + self.coords.lat + '/' + self.coords.lng,
 					}).then(function(info){
 							console.log("this is Weather info: " + info);
-							state.go('currentWeather');
+							// state.go('currentWeather');
 					})
 			};
 

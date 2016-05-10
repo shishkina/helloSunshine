@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-function getWeather(url, cb){
+function getCurrentWeather(url, cb){
   request(url, function(error, response, body){
     if(error){
       response.status(400);
@@ -11,4 +11,7 @@ function getWeather(url, cb){
     }
       cb(body);
   });
+}
+module.exports = {
+  getCurrentWeather: getCurrentWeather,
 }

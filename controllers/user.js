@@ -37,3 +37,8 @@ function getUser(req, res){
     }
   })
 }
+module.exports = {
+  createUser: createUser,
+  updateUser: updateUser,
+  getUser: getUser,
+}
