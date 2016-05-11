@@ -6,7 +6,7 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   date: Date,
-  search: String
+  searches: []
 });
 
 UserSchema.pre('save', function(next){
@@ -27,13 +27,11 @@ UserSchema.pre('save', function(next){
         console.log(err);
         return next();
       }
-      //override the user's password with the hashed one
       user.password = hashedPassword;
       next();
     })
   })
 })
-//compare hashed password
 UserSchema.methods.comparePassword = function(userPassword, cb){
   bcrypt.compare(userPassword, this.password, function(err, isMatch){
     if(err) {

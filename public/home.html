@@ -8,13 +8,14 @@
     <a  ui-sref-active="active" ui-sref="update"> Update</a>
     <h2>Hello, {{user.user.email}}</h2>
   </nav>
-  <div ng-controller="MapController as map">
+  <div ng-controller="WeatherController">
       <p> Your Current Location: ({{lat}}, {{lng}})</p>
-
-    <div id="map"></div>
-    <div id="current-weather" ng-controller="WeatherController as weather">
+      
+    <div id="current-weather">
       <button ng-click="getCurrentWeather()"> Get Current Weather </button>
-      <p>Current Temperature:  {{weather.weather.currentTemp}}</p>
+    <div ng-controller="MapController">
+      <div id="map"></div>
+    </div>
     </div>
   </div>
 

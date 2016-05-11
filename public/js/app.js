@@ -1,7 +1,18 @@
 console.log("inside app.js");
 var app = angular
 								.module('WeatherApp', ['ui.router', 'satellizer', 'ui.bootstrap'])
-  							.config(['$stateProvider', '$urlRouterProvider', '$authProvider', MainRouter]);
+  							.config(['$stateProvider', '$urlRouterProvider', '$authProvider', MainRouter])
+								.factory('weatherInfo', function Weather(){
+										var weather = {};
+										return {
+											setWeather: function(obj){
+												weather = obj;
+											},
+											getWeather: function(){
+												return weather;
+											}
+										}
+									});
 
 
 function MainRouter(states, router, auth) {
@@ -31,8 +42,8 @@ function MainRouter(states, router, auth) {
 					templateUrl: 'update.html'
 				})
 				.state('currentWeather',{
-					url: '/currentWeather',
-					templateUrl: 'home.html',
-					controller: 'WeatherController as weather'
+					url: '/currentWeather/:lat/:lng',
+					templateUrl: 'weather.html',
+					controller: 'WeatherController'
 				});
 }

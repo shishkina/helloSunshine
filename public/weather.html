@@ -1,0 +1,18 @@
+<div ng-controller="UserController as user">
+  <header>
+<div ng-controller="AuthController as auth">
+    <button ng-if="auth.isAuthenticated()" class="btn btn-primary" ng-click="auth.logout()">Logout</button>
+</div>
+</header>
+  <nav class="tabs">
+    <a  ui-sref-active="active" ui-sref="update"> Update</a>
+  </nav>
+    <div id="current-weather" ng-controller="MapController">
+        <p> Your Current Location: ({{lat}}, {{lng}})</p>
+      <!-- <button ng-click="weather.getCurrentWeather().currently.temperature"> Get Current Weather </button> -->
+      <p>Current Temperature for {{weather.timezone}} is {{weather.currently.temperature}} and it is {{weather.currently.summary}}</p>
+      <p></p>
+
+          <div id="map"></div>
+    </div>
+  </div>
