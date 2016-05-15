@@ -1,8 +1,8 @@
 'use strict'
 
-var User = require('../models/user.js'),
-    jwt = require('jsonwebtoken'),
-    secret = 'Sunshine';
+var User = require('../models/user.js');
+var jwt = require('jsonwebtoken');
+var secret = 'Sunshine';
 
 function makeToken(req, res){
   //check the credentials first
@@ -14,9 +14,9 @@ function makeToken(req, res){
       console.log(err);
     }
     if(!user){
-      res.json({
+      res.send({
         success: false,
-        message: 'Authentication failed. User not found.'
+        message: 'Authentication failed. User not found.',
       });
     } else if(user) {
       user.comparePassword(req.body.password, function(err, isMatch){

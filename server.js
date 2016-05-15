@@ -23,7 +23,7 @@ app.get('/', function(req, res){
   res.render('public/index.html');
 });
 
-app.use('/authenticate', authorizationRoutes);
+app.use('/auth', authorizationRoutes);
 app.use('/user', userRoutes);
 app.use('/weather', weatherRoutes);
 app.use('/location', locationRoutes);

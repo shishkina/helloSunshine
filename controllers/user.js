@@ -1,7 +1,7 @@
 var User = require('../models/user.js');
 
 function createUser(req, res){
-  console.log(re.body);
+  console.log(req.body);
   var user = new User(req.body);
   user.save(function(err){
     if(err){
@@ -13,21 +13,24 @@ function createUser(req, res){
   });
 }
 function updateUser(req, res){
-  //assign necessary parameters
-  var id = req.params.id;
-  var email = req.params.email;
-  var password = req.params.password;
-  //find user by id
-  User.findOneAndUpdate(
-    {_id: id},
-    {$set: {email: email, password: password}},
-    {new:true}, function(err,doc){
-      if(err){
-        console.log("User Not updated. Error: " + err);
+    var userId = req.params.id;
+    var newSearch = req.body.newSearch;
+
+    if (newSearch) {
+      User.findByIdAndUpdate(
+        userId,
+        {$push: {searches: newSearch}},
+        {new: true}, function(err, user){
+          if(err) res.send({message: error});
+
+          else return res.json(user);
+        });
       }
-      console.log(doc);
-    })
+    else {
+      res.json({message: "cannot update the searches"});
+    }
 }
+
 function getUser(req, res){
   var id = req.params.id;
 
@@ -35,7 +38,8 @@ function getUser(req, res){
     if(err){
       res.json({msg:"Could not find user"})
     }
-  })
+    res.send({user: user});
+  });
 }
 module.exports = {
   createUser: createUser,
