@@ -1,7 +1,8 @@
+'use strict'
+
 var User = require('../models/user.js');
 
 function createUser(req, res){
-  console.log(req.body);
   var user = new User(req.body);
   user.save(function(err){
     if(err){
