@@ -2,7 +2,7 @@
 console.log("inside the WeatherController");
 app.controller('WeatherController', WeatherController);
 
-function 	WeatherController($log, $scope, $rootScope, $window, $stateParams, $state, $http, $auth,$timeout){
+function 	WeatherController($log, $scope, $rootScope, $window, $stateParams, $state, $http, $auth){
 
 			$scope.getWeather = function(){
 					navigator.geolocation.getCurrentPosition(function (position){
@@ -21,7 +21,7 @@ function 	WeatherController($log, $scope, $rootScope, $window, $stateParams, $st
 						url: '/weather/' + $rootScope.lat + '/' + $rootScope.lng,
 						}).then(function(info){
 							$rootScope.weather = info.data;
-							$state.go('user',{lat: $rootScope.lat,lng: $rootScope.lng})
+							$state.go('user',{lat: $rootScope.lat, lng: $rootScope.lng});
 					});
 			};
 
