@@ -1,46 +1,41 @@
 'use strict'
 console.log('inside the UserController');
-	app.controller('UserController', UserController);
+app.controller('UserController', UserController);
 
-
-function UserController($http, $auth, $state, $stateParams){
+function UserController ($http, $auth, $state, $stateParams, $rootScope, $scope){
       var self = this;
-		 	self.updateOne = {};
-      // self.all = [];
-			console.log(self);
+			self.search = undefined;
+
       var userId = $stateParams.id;
-			console.log($stateParams.id + ' state params');
       if($auth.isAuthenticated) {
-        console.log('this is excecuting');
         getUser();
-      }else{
+      } else {
         $state.go('login');
-        console.log('login page excecuting');
       }
-      function getUser(){
-        //this is working
-        console.log('Logging from inside getUser');
+    	function getUser(){
           $http({
             url: '/user/' + userId,
-            method: 'GET'
+            method: 'GET',
           }).then(function(data){
-            // console.log('this is self ' + Object.self.getOwnPropertyNames());
             console.log(data + ' this is data');
 						self.user = data.data.user;
-            // console.log('self.user.data.user ' + self.user.data.user);
           });
+					return self;
       }
+			//still not able to add searches to user profile.
 			function updateUser(){
-				console.log('in update User now');
+				if(self.search){
 				$http({
 					method: 'PATCH',
 					url: '/user/' + userId,
-					data: self.updateOne,
-					headers: {'Content-Type':'application/json'}
+					data: {newSearch: self.search},
+					headers: {'Content-Type':'application/json'},
 				}).then( function(data) {
-						//assuming you need data.data ...
-					self.user = data.data.user;
-      	$state.go('user', {user: user._id});
-				})
-			}
-  }
+		        var queries = data.data.user.searches;
+		        var newSearch = queries[queries.length - 1];
+						return newSearch;
+
+			});
+		}
+	}
+}

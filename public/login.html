@@ -1,12 +1,7 @@
 <header>
-  <h1> Sunshine!</h1>
-  <h4> Log in </h4>
+  <h1> Hello, Sunshine!</h1>
 
 </header>
-<nav class="tabs">
-  <a ui-sref="signup" ui-sref-active="active">signup</a>
-
-</nav>
 
     <section id="login" ng-controller="AuthController as auth">
       <form>
@@ -17,5 +12,7 @@
       <input type="password" class="form-control" id="login-password" placeholder="password" ng-model="auth.password">
         </div>
       <button class="btn btn-primary" ng-click="auth.login()">Login</button>
+        <a ui-sref="signup" ui-sref-active="active"> signup</a>
+
       </form>
     </section>

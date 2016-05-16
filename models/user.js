@@ -12,7 +12,6 @@ var UserSchema = new mongoose.Schema({
 UserSchema.pre('save', function(next){
   var user = this;
 
-  //only hash the password if it has been modified
   if(!user.isModified('password')){
     return next();
   }
@@ -21,7 +20,6 @@ UserSchema.pre('save', function(next){
       console.log(err);
       return next();
     }
-    //hash the password using new salt
     bcrypt.hash(user.password, salt, function(err, hashedPassword){
       if(err){
         console.log(err);
@@ -42,5 +40,4 @@ UserSchema.methods.comparePassword = function(userPassword, cb){
 };
 
 var User = mongoose.model('User', UserSchema);
-//export User model
 module.exports = User;

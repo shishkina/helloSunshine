@@ -1,9 +1,8 @@
 'use strict'
 console.log("Inside the AuthController");
-	app.controller('AuthController', AuthController);
+app.controller('AuthController', AuthController);
 
-
-function AuthController($http, $auth, $state) {
+function AuthController($http, $auth, $state, $rootScope) {
   var self = this;
   self.login = function(){
     var credentials = {
@@ -19,13 +18,10 @@ function AuthController($http, $auth, $state) {
       console.log(typeof(data));
       console.log(user._id + " id being passed");
       console.log(user.email + " email");
-      $state.go('user', {"id": user._id});
+      $state.go('user', {id: user._id});
 
     });
   },
-		self.update = function(data){
-				var user = data.data.user;
-		},
     self.logout = function(){
       $auth.logout()
            .then(function(){
@@ -40,7 +36,6 @@ function AuthController($http, $auth, $state) {
 				  password: self.password
 				}).then(function(response) {
 				  console.log(response.data);
-
 					$state.go('login')
 				});
 			}
